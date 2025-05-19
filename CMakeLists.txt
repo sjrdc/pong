@@ -23,6 +23,8 @@ else()
 
 endif()
 
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+
 add_subdirectory(src)
 
 # add_library(pong::pong ALIAS pong)
