@@ -1,7 +1,11 @@
-#include <iostream>
+#include <QtWidgets/QApplication>
+#include "mainwindow.h"
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-    std::cout << "hello, pong!\n"; 
-    return 0;
+    QApplication a(argc, argv);
+    
+    pong::mainwindow w;
+
+    return QApplication::exec();
 }
