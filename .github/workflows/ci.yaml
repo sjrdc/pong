@@ -67,7 +67,7 @@ jobs:
         # arch: 'win64_msvc2022_64'
         # dir: '${{ github.workspace }}/example/'
         # install-deps: 'true'
-        modules: ''
+        modules: 'qtmultimedia'
         # archives: 'qtbase qtsvg'
         # cache: 'false'
         # cache-key-prefix: 'install-qt-action'

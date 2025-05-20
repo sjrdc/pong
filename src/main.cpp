@@ -1,5 +1,8 @@
 #include <QtWidgets/QApplication>
 #include <QTimer>
+#include <QCamera>
+#include <QImageCapture>
+
 #include <QRandomGenerator>
 #include "mainwindow.h"
 
@@ -9,10 +12,10 @@ namespace
 {
     void generate_coordinates(auto& generator, auto highest, auto& coordinates)
     {
-            for (auto& point : coordinates)
-            {
-                point = QPoint(generator.bounded(highest.width()), generator.bounded(highest.height()));
-            }
+        for (auto& point : coordinates)
+        {
+            point = QPoint(generator.bounded(highest.width()), generator.bounded(highest.height()));
+        }
     }
 
     auto get_player_coordinates(auto& generator, auto highest)
@@ -37,6 +40,9 @@ namespace
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
+    
+    QCamera camera;
+    QImageCapture capture;
     
     pong::mainwindow w;
     QTimer timer;

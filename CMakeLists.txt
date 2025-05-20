@@ -23,7 +23,7 @@ else()
 
 endif()
 
-find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Multimedia REQUIRED)
 
 add_subdirectory(src)
 
