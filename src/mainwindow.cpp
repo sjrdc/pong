@@ -1,9 +1,11 @@
 #include "mainwindow.h"
-#include <algorithm>
+
+#include <QGuiApplication>
 #include <QHBoxLayout>
 #include <QScreen>
-#include <QGuiApplication>
-#include <iostream>
+
+#include <algorithm>
+
 namespace
 {
     constexpr auto circle_color = Qt::white;
