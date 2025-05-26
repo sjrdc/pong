@@ -4,38 +4,24 @@
 #include <QMediaDevices>
 #include <QImageCapture>
 #include <QMediaCaptureSession>
-
 #include <QRandomGenerator>
+
+#include <opencv2/opencv.hpp>
+
 #include "mainwindow.h"
+#include "pose_estimator.h"
 
 #include <array>
 #include <iostream>
 
 namespace
 {
-    void generate_coordinates(auto& generator, auto highest, auto& coordinates)
-    {
-        for (auto& point : coordinates)
-        {
-            point = QPoint(generator.bounded(highest.width()), generator.bounded(highest.height()));
-        }
-    }
 
-    auto get_player_coordinates(auto& generator, auto highest)
+    void run_updates(pong::mainwindow& w, pong::pose_estimator estimator, QTimer& timer)
     {
-            pong::players players;
-            generate_coordinates(generator, highest, players.left_player);
-            generate_coordinates(generator, highest, players.right_player);
-            return players;
-    }
-
-    void run_updates(pong::mainwindow& w, QTimer& timer, QRandomGenerator& generator, QImageCapture& capture)
-    {
-        auto update_players = [&generator, &w, &capture]()
+        auto update_players = [&estimator, &w]()
         {
-            w.update(get_player_coordinates(generator, w.size()));
-            std::cout << "ready for capture: " << std::boolalpha << capture.isReadyForCapture() << std::endl;
-            if (capture.isReadyForCapture()) capture.capture();
+            w.update(estimator.infer(w.size()));
         };
         QObject::connect(&timer, &QTimer::timeout, update_players);
         timer.start(500);
@@ -67,8 +53,8 @@ int main(int argc, char* argv[])
     const auto cameras = QMediaDevices::videoInputs();
     if (cameras.isEmpty())
     {
-        std::cerr << "no camera available - exit" << std::endl;
-        return 1;
+        // std::cerr << "no camera available - exit" << std::endl;
+        // return 1;
     }
 
     auto camera = QCamera(QMediaDevices::defaultVideoInput());
@@ -84,8 +70,8 @@ int main(int argc, char* argv[])
     
     pong::mainwindow w;
     QTimer timer;
-    QRandomGenerator generator;
-    run_updates(w, timer, generator, capture);
+    pong::pose_estimator estimator;
+    run_updates(w, estimator, timer);
 
     return QApplication::exec();
 }

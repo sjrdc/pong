@@ -58,6 +58,11 @@ jobs:
       run: |
         sudo apt-get update && sudo apt-get install build-essential libc++-17-dev and libc++abi-17-dev
     
+    - name: Install OpenCV
+      uses: Dovyski/setup-opencv-action@v1.1
+      with:
+        opencv-version: '4.0.0'
+        
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:

@@ -1,21 +1,16 @@
+#include "datatypes.h"
+
 #include <QtWidgets/QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QAbstractGraphicsShapeItem>
 
-#include <array>
 #include <memory>
 #include <utility>
 
 namespace pong
 {
-    constexpr auto nr_extremeties = 4;
-    using extremeties = std::array<QPointF, nr_extremeties>;
-    struct players
-    {
-        extremeties left_player;
-        extremeties right_player;
-    };
+
 
     class mainwindow : public QWidget
     {

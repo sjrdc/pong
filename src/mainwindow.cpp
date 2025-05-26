@@ -17,12 +17,17 @@ namespace
     constexpr auto diameter = 35.;
     constexpr auto radius_offset = QPointF(-0.5*diameter, -0.5*diameter);
 
+    QPointF make_point(const std::pair<float, float>& p)
+    {
+        return QPointF(p.first, p.second);
+    }
+
     void update_player_positions(const auto& positions, auto& graphics)
     {
         assert(positions.size() == graphics.size());
         for (auto i = 0ul; i < positions.size(); ++i)
         {
-            graphics[i]->setPos(positions[i] + radius_offset);
+            graphics[i]->setPos(make_point(positions[i]) + radius_offset);
         }
     }
 }

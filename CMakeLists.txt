@@ -24,6 +24,7 @@ else()
 endif()
 
 find_package(Qt6 COMPONENTS Widgets Multimedia REQUIRED)
+find_package(OpenCV REQUIRED)
 
 add_subdirectory(src)
 
