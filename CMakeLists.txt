@@ -25,6 +25,9 @@ endif()
 
 find_package(Qt6 COMPONENTS Widgets Multimedia REQUIRED)
 find_package(OpenCV REQUIRED)
+if (${OpenCV_VERSION} VERSION_LESS "4.10.0")
+    message(FATAL_ERROR "pong requires OpenCV >= 4.10.0")
+endif()
 
 add_subdirectory(src)
 

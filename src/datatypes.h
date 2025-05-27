@@ -12,4 +12,8 @@ namespace pong
         extremeties left_player;
         extremeties right_player;
     };
+
+    struct image
+    {
+    };
 }

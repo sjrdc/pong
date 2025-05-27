@@ -21,7 +21,7 @@ namespace
     {
         auto update_players = [&estimator, &w]()
         {
-            w.update(estimator.infer(w.size()));
+            w.update(estimator.infer({}));
         };
         QObject::connect(&timer, &QTimer::timeout, update_players);
         timer.start(500);
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
     
     pong::mainwindow w;
     QTimer timer;
-    pong::pose_estimator estimator;
+    auto estimator = pong::pose_estimator(w.size());
     run_updates(w, estimator, timer);
 
     return QApplication::exec();
