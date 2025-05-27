@@ -58,11 +58,12 @@ jobs:
       run: |
         sudo apt-get update && sudo apt-get install build-essential libc++-17-dev and libc++abi-17-dev
     
-    - name: Install OpenCV
-      uses: Dovyski/setup-opencv-action@v1.1
-      with:
-        opencv-version: '4.0.0'
-        
+    # - name: Install OpenCV
+    #   uses: Dovyski/setup-opencv-action@v1.1
+    #   with:
+    #     opencv-version: '4.11.0'
+    #     install-deps: 'false'
+
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
@@ -71,8 +72,8 @@ jobs:
         # target: 'desktop'
         # arch: 'win64_msvc2022_64'
         # dir: '${{ github.workspace }}/example/'
-        # install-deps: 'true'
-        modules: 'qtmultimedia'
+        # install-deps: 'false'
+        modules: 'qtmultimedia'1
         # archives: 'qtbase qtsvg'
         # cache: 'false'
         # cache-key-prefix: 'install-qt-action'
